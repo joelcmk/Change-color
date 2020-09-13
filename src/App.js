@@ -3,6 +3,29 @@ import './App.css'
 
 class Colorized extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      color: '',
+      bgColor: 'red'
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      color: e.target.value
+    })
+  }
+
+  handleSubmit(e) {
+    this.setState({
+      bgColor: this.state.color
+    })
+    e.preventDefault();
+  }
+
   render() {
     var styleBg = {
       backgroundColor: this.state.bgColor
