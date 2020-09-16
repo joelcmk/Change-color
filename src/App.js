@@ -7,7 +7,7 @@ class Colorized extends React.Component {
     super();
     this.state = {
       color: '',
-      bgColor: 'red'
+      bgColor: 'white'
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +23,10 @@ class Colorized extends React.Component {
     this.setState({
       bgColor: this.state.color
     })
+
+    this._input.focus();
+    this._input.value = "";
+
     e.preventDefault();
   }
 
@@ -30,11 +34,19 @@ class Colorized extends React.Component {
     var styleBg = {
       backgroundColor: this.state.bgColor
     }
+
+    var self = this
+
     return (
-      <div>
-        <div style={styleBg} className="colorBox"></div>
+      <div className="colorArea">
+        <div style={styleBg} className="colorSquare"></div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange}
+            ref={
+              function (el) {
+                self._input = el;
+              }
+            }
             placeholder="enter a color">
           </input>
           <button type="submit">go</button>
